@@ -4,7 +4,9 @@ import os
 import json
 import datetime
 import urllib.request
+
 '''
+#You can parse recent 10 weeks!
 ParsingDataListbyDate=[]
 for i in range(0,10):
     time = datetime.datetime.now() - datetime.timedelta(days = i*7)
@@ -15,6 +17,7 @@ for i in range(0,10):
     ParsingDataListbyRank=[]
     index = 1
 '''
+
 time = datetime.datetime.now() - datetime.timedelta(days = 0*7)
 date = time.strftime("%Y-%m-%d")
 url="http://www.billboard.com/charts/hot-100/{0}".format(date)
@@ -43,7 +46,12 @@ for s in range(0,100):
         DataDitionary['rank'] = rank[0].get_text(" ", strip=True)
         DataDitionary['date'] = date
         ParsingDataListbyRank.append(DataDitionary)
-        #print("{0} : {1}".format(index,ParsingDataListbyRank[s]))  # Look A Parsed Aata
+        
+        # Look A Parsed Data
+        #print("{0} : {1}".format(index,ParsingDataListbyRank[s]))
+        
         index=index+1
+
+#You can send parsed data formatted with JSON.
 jsonData = json.dumps(ParsingDataListbyRank)
 #print(jsonData)
