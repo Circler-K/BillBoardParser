@@ -4,9 +4,8 @@ import os
 import json
 import datetime
 import urllib.request
-
 '''
-#You can parse recent 10 weeks!
+// 최근 10주 동안의 데이터가 필요할 시
 ParsingDataListbyDate=[]
 for i in range(0,10):
     time = datetime.datetime.now() - datetime.timedelta(days = i*7)
@@ -17,7 +16,6 @@ for i in range(0,10):
     ParsingDataListbyRank=[]
     index = 1
 '''
-
 time = datetime.datetime.now() - datetime.timedelta(days = 0*7)
 date = time.strftime("%Y-%m-%d")
 url="http://www.billboard.com/charts/hot-100/{0}".format(date)
@@ -46,12 +44,7 @@ for s in range(0,100):
         DataDitionary['rank'] = rank[0].get_text(" ", strip=True)
         DataDitionary['date'] = date
         ParsingDataListbyRank.append(DataDitionary)
-        
-        # Look A Parsed Data
-        #print("{0} : {1}".format(index,ParsingDataListbyRank[s]))
-        
+        print("{0} : {1}".format(index,ParsingDataListbyRank[s]))  # Look A Parsed Aata
         index=index+1
-
-#You can send parsed data formatted with JSON.
-jsonData = json.dumps(ParsingDataListbyRank)
+jsonData = json.dumps(ParsingDataListbyRank) # 데이터를 json 형식으로 변환한다.
 #print(jsonData)
